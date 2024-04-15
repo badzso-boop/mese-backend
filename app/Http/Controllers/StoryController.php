@@ -11,4 +11,11 @@ class StoryController extends Controller
     {
         return response()->json(Story::all());
     }
+
+    public function stories()
+    {
+        $stories = Story::all();
+
+        return view('book', compact('stories'));
+    }
 }

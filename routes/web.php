@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get('/stories', [StoryController::class, 'index']);
+Route::get('/sztorik', [StoryController::class, 'stories']);
