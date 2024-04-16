@@ -3,7 +3,6 @@
 <head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="js/filament/turn.min.js"></script>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-beta1/css/bootstrap.min.css" rel="stylesheet">
 
 
 <style type="text/css">
@@ -23,15 +22,51 @@
     }
 
     #book .cover{
-        background:#333;
+        background-image: url('/images/proba.jpeg');
+        background-size: cover;
+        background-position: center;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     }
 
     #book .cover h1{
-        color:white;
-        text-align:center;
-        font-size:50px;
-        line-height:500px;
+        color: black;
+        text-align: center;
+        font-size: 45px;
+        line-height: 500px; 
         margin:0px;
+    }
+
+    #book .cover .bottom-left {
+        width: 75px;
+        height: 150px;
+        position:absolute;
+        bottom: 0;
+        right: 25px;
+        background-image: url('images/IntegetosLany.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    #book .cover .bottom-right {
+        width: 75px;
+        height: 150px;
+        position:absolute;
+        bottom: 0;
+        left: 25px;
+        background-image: url('images/IntegetosFiu.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    #book .cover .top-center {
+        width: 75px;
+        height: 75px;
+        position:absolute;
+        top: 150px;
+        left: 165px;
+        background-image: url('images/logo-inverz.png');
+        background-size: cover;
+        background-position: center;
     }
 
     #book .loader {
@@ -46,6 +81,56 @@
 
     #book .data{
         padding: 25px;
+    }
+
+    #book .data-title{
+        padding: 25px;
+    }
+
+    #book .data-title h1{
+        color: black;
+        text-align: center;
+        font-size: 40px;
+        line-height: 250px;
+        margin:0px;
+    }
+
+    .page-number-even {
+        position: absolute;
+        bottom: 10px;
+        right: 25px;
+        border-top: 2px solid black;
+        width: 85%;
+        text-align: right;
+        padding: 5px;
+    }
+
+    .page-number-odd {
+        position: absolute;
+        bottom: 10px;
+        left: 25px;
+        border-top: 2px solid black;
+        width: 85%;
+        padding: 5px;
+    }
+
+    .top-small-title {
+        position:absolute;
+        top: 0;
+        left: 25px;
+        border-bottom: 2px solid black;
+        width: 85%;
+        margin-top: 10px;
+        padding-bottom: 5px;
+    }
+
+    .top-number {
+        text-align: right;
+        float: right;
+    }
+
+    .szoveg {
+        font-size: 20px;
     }
 
     #controls{
@@ -81,20 +166,39 @@
         border: 2px solid black;
         width: 50%;
     }
+
+    .button {
+        background-color: #1eb304;
+        border-radius: 10px;
+        color: white;
+        height: 25px;
+    }
 </style>
 </head>
 <body>
     <div class="container">
         <div id="book">
-            <div class="cover"><h1>Amigos történetek</h1></div>
+            <div class="cover">
+                <div class="top-center">
+
+                </div>
+                <h1>Amigos történetek</h1>
+                <div class="bottom-left">
+
+                </div>
+                <div class="bottom-right">
+
+                </div>
+            </div>
         </div>
 
         <div id="controls">
-            <button id="prev-page">Previous</button>
-            <button id="next-page">Next</button>
-            <label for="page-number">Page:</label> <input type="text" size="3" id="page-number"> of <span id="number-pages"></span>
+            <button id="prev-page" class="button">Előző</button>
+            <button id="next-page" class="button">Következő</button>
+            <label for="page-number">Oldalszám:</label> <input type="text" size="3" id="page-number"> of <span id="number-pages"></span>
         </div>
     </div>
+    
 
     <script type="text/javascript">
 
@@ -115,7 +219,7 @@
             storiesForPages.push(pageObject)
             let oldal = "";
             let k = 0;
-            let numberOfWordsPerPage = 75
+            let numberOfWordsPerPage = 85
             for (let i = 0; i < storiesWords.length; i++) {
                 if (k !== numberOfWordsPerPage) {
                     oldal += storiesWords[i] + " "
@@ -154,10 +258,11 @@
                 // Let's assume that the data is coming from the server and the request takes 1s.
                 setTimeout(function(){
                         if (bigStory[page-2].page === "") {
-                            element.html('<div class="data">'+ bigStory[page-2].title + "<br>csa<br>" + page + '</div>');    
+                            element.html('<div class="data-title"><h1>'+ bigStory[page-2].title + "</h1><div class='page-number-"+((page%2==0) ? 'odd' : 'even')+"'>" + page + '. oldal</div></div>');
                         }
                         else {
-                            element.html('<div class="data">'+ bigStory[page-2].title + "<br>" + bigStory[page-2].page + page + '</div>');
+                            element.html('<div class="data"><div class="top-small-title">' + bigStory[page-2].title + '<span class="top-number">' + page + '. oldal</span></div><br><p class="szoveg">' + bigStory[page-2].page + '</p></div>' + '<div class="page-number-' + ((page % 2 == 0) ? 'odd' : 'even') + '">' + page + '. oldal</div>');
+
                         }
                 }, 1000);
             }
@@ -209,7 +314,5 @@
         });
 
     </script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
