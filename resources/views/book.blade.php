@@ -130,8 +130,7 @@
     }
 
     .szoveg {
-        font-size: 20px;
-        margin: 5px !important;
+        font-size: 19px;
     }
 
     #controls{
@@ -163,12 +162,13 @@
     }
 
     .container {
-        margin: auto;
+        margin-top: 200px;
     }
 
     @media screen and (max-width: 768px) {
         .container {
             width: 100%; /* Szélesség 100%-ra állítva, ha a kijelző szélessége 768px alatt van */
+            margin-top: 350px;
         }
     }    
 
@@ -224,7 +224,7 @@
             storiesForPages.push(pageObject)
             let oldal = "";
             let k = 0;
-            let numberOfWordsPerPage = 80
+            let numberOfWordsPerPage = 75
             for (let i = 0; i < storiesWords.length; i++) {
                 if (k !== numberOfWordsPerPage) {
                     oldal += storiesWords[i] + " "
