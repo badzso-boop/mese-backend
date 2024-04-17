@@ -131,6 +131,7 @@
 
     .szoveg {
         font-size: 20px;
+        margin: 5px !important;
     }
 
     #controls{
