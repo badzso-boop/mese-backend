@@ -163,9 +163,13 @@
 
     .container {
         margin: auto;
-        border: 2px solid black;
-        width: 50%;
     }
+
+    @media screen and (max-width: 768px) {
+        .container {
+            width: 100%; /* Szélesség 100%-ra állítva, ha a kijelző szélessége 768px alatt van */
+        }
+    }    
 
     .button {
         background-color: #1eb304;
