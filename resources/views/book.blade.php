@@ -224,7 +224,7 @@
             storiesForPages.push(pageObject)
             let oldal = "";
             let k = 0;
-            let numberOfWordsPerPage = 85
+            let numberOfWordsPerPage = 80
             for (let i = 0; i < storiesWords.length; i++) {
                 if (k !== numberOfWordsPerPage) {
                     oldal += storiesWords[i] + " "
@@ -240,6 +240,12 @@
                     oldal = storiesWords[i] + " "
                 }
             }
+
+            var pageObject = {
+                page: oldal,
+                title: cim
+            };
+            storiesForPages.push(pageObject)            
 
             return storiesForPages
         }
